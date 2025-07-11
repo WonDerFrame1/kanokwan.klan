@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Kanokwan Klankaew</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000; /* พื้นหลังสีดำทึบ */
+            color: #e2e8f0; /* ตัวอักษรสีอ่อน */
+        }
+
+        /* Styles for the animated background canvas */
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%; /* จะปรับตามความสูงของ #hero-section-wrapper */
+            z-index: 1; /* ตรวจสอบให้แน่ใจว่าอยู่ด้านหลังเนื้อหา */
+        }
+
+        /* ใช้ div ครอบ Hero Section เพื่อให้ canvas ยึดขนาดตามส่วนที่มองเห็นได้แรก */
+        #hero-section-wrapper {
+            position: relative; /* ให้ canvas อ้างอิงตำแหน่งกับ div นี้ */
+            height: 100vh; /* กำหนดให้ส่วนแรกของหน้ามีขนาดเต็มหน้าจอ */
+            overflow: hidden; /* ซ่อนสิ่งที่เกินจาก div นี้ */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #000000; /* สีพื้นหลังเหมือนเดิม */
+            color: #e2e8f0;
+        }
+
+        #hero-section-wrapper .container {
+            position: relative;
+            z-index: 2; /* ตรวจสอบให้แน่ใจว่าเนื้อหาอยู่ด้านบน canvas */
+        }
+
+        /* Typing effect cursor */
+        .typing-effect::after {
+            content: '|';
+            animation: blink-caret .75s step-end infinite;
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: pink; } /* ให้สีเดียวกับตัวอักษร */
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-black shadow-sm py-4 sticky top-0 z-50">
+        <nav class="container mx-auto px-4 flex justify-between items-center">
+            <a href="#hero-section-wrapper" class="text-2xl font-bold text-pink-500 rounded-lg p-2 hover:bg-gray-900 transition duration-300">
+                <span class="text-white mr-2">iPort</span> <span class="text-pink-500">Kanokwan.</span>
+            </a>
+            <ul class="flex space-x-6">
+                <li><a href="#hero-section-wrapper" class="text-gray-200 hover:text-pink-500 font-medium transition duration-300 rounded-md py-2 px-3">HOME</a></li>
+                <li><a href="#profile-section" class="text-gray-200 hover:text-pink-500 font-medium transition duration-300 rounded-md py-2 px-3">ABOUT US</a></li>
+                <li><a href="#my-skills-section" class="text-gray-200 hover:text-pink-500 font-medium transition duration-300 rounded-md py-2 px-3">SKILL</a></li>
+                <li><a href="#activities-section" class="text-gray-200 hover:text-pink-500 font-medium transition duration-300 rounded-md py-2 px-3">ACTIVITIES</a></li>
+                <li><a href="#certifications-section" class="text-gray-200 hover:text-pink-500 font-medium transition duration-300 rounded-md py-2 px-3">CERTIFICATIONS</a></li>
+                <li><a href="#contact-section" class="text-gray-200 hover:text-pink-500 font-medium transition duration-300 rounded-md py-2 px-3">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div id="hero-section-wrapper">
+            <canvas id="hero-canvas"></canvas>
+
+            <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between z-20">
+                <div class="md:w-1/2 text-center md:text-left mb-12 md:mb-0 md:pl-24">
+                    <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4 animate-fade-in-up">
+                        Kanokwan Klankaew
+                    </h1>
+                    <p class="text-2xl md:text-3xl text-pink-500 mb-6 animate-fade-in-up delay-100">
+                        <span id="cybersecurity-text" class="typing-effect font-bold"></span>
+                    </p>
+                    <p class="text-lg md:text-xl font-light mb-8 max-w-xl opacity-90 animate-fade-in-up delay-200">
+                        Computer Science student focusing on Cybersecurity and CTF competitions, dedicated to developing skills for a professional career in information security.
+                    </p>
+                    <a href="#profile-section" class="inline-block bg-pink-600 text-white hover:bg-pink-700 font-bold py-3 px-8 rounded-full shadow-lg transform transition duration-300 hover:scale-105 animate-fade-in-up delay-400">
+                        About me <i class="fas fa-envelope ml-2"></i>
+                    </a>
+                </div>
+                <div class="md:w-1/2 flex justify-center md:justify-end animate-fade-in-right delay-300 -mt-20 md:-mt-56">
+                    <img src="profile-Photoroom.png" alt="รูปโปรไฟล์ของคุณ" class=" max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-2xl rounded-lg shadow-2xl object-cover">
+                </div>
+            </div>
+        </div>
+                <div class="md:w-1/2 flex justify-center md:justify-end animate-fade-in-right delay-300 -mt-20 md:-mt-50">
+    <img src="profile-Photoroom.png" alt="รูปโปรไฟล์ของคุณ" class="w-full max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-2xl rounded-lg shadow-2xl object-cover ml-auto">
+</div>
+            </div>
+        </div>
+
+        <section id="profile-section" class="py-16 md:py-24 bg-black">
+            <div class="container mx-auto px-4">
+                <!-- Main content box: Changed background to black, adjusted text color for readability -->
+                <div class="bg-black rounded-lg shadow-xl overflow-hidden flex flex-col lg:flex-row">
+                    <!-- Left Column: Profile Image - Changed background to black -->
+                    <div class="lg:w-1/2 p-6 lg:p-12 flex justify-center items-center bg-black lg:-mt-24">
+                        <img src="profile1.jpg" alt="รูปโปรไฟล์ของคุณ" class="w-full max-w-sm md:max-w-md lg:max-w-xl rounded-lg shadow-2xl object-cover">
+                    </div>
+
+                    <!-- Right Column: Biography Content - Adjusted text colors for black background -->
+                    <div class="lg:w-1/2 p-6 lg:p-12 text-gray-200">
+                        <h2 class="text-4xl font-bold text-pink-500 mb-6">Profile</h2>
+                        
+                        <div class="grid grid-cols-1 gap-x-8 gap-y-4 text-lg mb-10">
+                            <div>
+                                <span class="font-semibold text-pink-400">Full Name :</span> Kanokwan Klankaew
+                            </div>
+                            <div>
+                                <span class="font-semibold text-pink-400">Nick Name :</span> Frame
+                            </div>
+                            <div>
+                                <span class="font-semibold text-pink-400">birthday :</span> 15 August 2003
+                            </div>
+                            <div>
+                                <span class="font-semibold text-pink-400">Age :</span> 22 Years
+                            </div>
+                            <div>
+                                <span class="font-semibold text-pink-400">Email:</span> kanokwanklan.contact@gmail.com
+                            </div>
+                            <div>
+                                <span class="font-semibold text-pink-400">Phone Number :</span> 095-858-7918
+                            </div>
+                            <div>
+                                <span class="font-semibold text-pink-400">GPA:</span> 3.33
+                            </div>
+                        </div>
+
+                        <!-- Education Section: Horizontal Timeline - Now within a black box -->
+                        <h3 class="text-3xl font-bold text-pink-500 mb-6 mt-10">Education</h3>
+                        <div class="bg-black p-6 rounded-lg mb-10">
+                            <div class="relative flex justify-between items-center overflow-x-auto py-4">
+                                <!-- Education Item 1: Bangkok University -->
+                                <div class="flex-shrink-0 w-64 text-center relative z-10 mx-4">
+                                    <div class="flex justify-center mb-2">
+                                        <img src="BULogo.svg.png" alt="Bangkok University Logo" class="w-16 h-16 rounded-full border-2 border-pink-500 p-1 bg-white shadow-lg">
+                                    </div>
+                                    <p class="text-lg font-semibold text-gray-200">2022 - currently</p>
+                                    <h4 class="text-xl font-bold text-pink-500 mt-2">Bangkok University</h4>
+                                    <p class="text-gray-300 text-sm">Information technology and innovation of Bangkok University</p>
+                                    <p class="text-gray-400 text-xs">GPA: 3.33</p>
+                                </div>
+
+                                <!-- Education Item 2: S.P.V.C. -->
+                                <div class="flex-shrink-0 w-64 text-center relative z-10 mx-4">
+                                    <div class="flex justify-center mb-2">
+                                        <img src="bigsize_20100001_21022122224935.jpg" alt="S.P.V.C. Logo" class="w-16 h-16 rounded-full border-2 border-pink-500 p-1 bg-white shadow-lg">
+                                    </div>
+                                    <p class="text-lg font-semibold text-gray-200">2019 - 2021</p>
+                                    <h4 class="text-xl font-bold text-pink-500 mt-2">S.P.V.C.</h4>
+                                    <p class="text-gray-300 text-sm">Computer Graphic of SuphanBuri vocational college</p>
+                                    <p class="text-gray-400 text-xs">GPA: 3.49</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- My Skills Section -->
+                <!-- My Skills Section -->
+        <section id="my-skills-section" class="pt-16 md:pt-24 pb-32 bg-black">
+            <div class="container mx-auto px-4">
+                <div class="bg-black p-6 rounded-lg shadow-xl text-gray-200">
+                    <h3 class="text-3xl font-bold text-white-500 mb-6 text-center">My Skills</h3>
+                    <!-- Technical Skills Section -->
+                    <div class="mb-10">
+                        <h4 class="text-2xl font-bold text-pink-400 mb-4">Skill</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <!-- Skill Item -->
+                            <div class="bg-gray-900 p-4 rounded-lg shadow-md flex items-center">
+                                <i class="fas fa-shield-alt text-pink-500 text-2xl mr-4"></i>
+                                <div>
+                                    <p class="font-semibold text-lg">Cybersecurity Fundamentals</p>
+                                    <p class="text-sm text-gray-400">Understanding of core security concepts.</p>
+                                </div>
+                            </div>
+                            <div class="bg-gray-900 p-4 rounded-lg shadow-md flex items-center">
+                                <i class="fas fa-network-wired text-pink-500 text-2xl mr-4"></i>
+                                <div>
+                                    <p class="font-semibold text-lg">Network Security</p>
+                                    <p class="text-sm text-gray-400">Firewalls, IDS/IPS, VPNs, protocols.</p>
+                                </div>
+                            </div>
+                            <div class="bg-gray-900 p-4 rounded-lg shadow-md flex items-center">
+                                <i class="fas fa-globe text-pink-500 text-2xl mr-4"></i>
+                                <div>
+                                    <p class="font-semibold text-lg">Web Application Security</p>
+                                    <p class="text-sm text-gray-400">OWASP Top 10, vulnerability assessment.</p>
+                                </div>
+                            </div>
+                            <div class="bg-gray-900 p-4 rounded-lg shadow-md flex items-center">
+                                <i class="fas fa-flask text-pink-500 text-2xl mr-4"></i>
+                                <div>
+                                    <p class="font-semibold text-lg">Penetration Testing</p>
+                                    <p class="text-sm text-gray-400">Using tools like Metasploit, Nmap.</p>
+                                    </div>
+                            </div>
+                            <div class="bg-gray-900 p-4 rounded-lg shadow-md flex items-center">
+                                <i class="fab fa-python text-pink-500 text-2xl mr-4"></i>
+                                <div>
+                                    <p class="font-semibold text-lg">Python Programming</p>
+                                    <p class="text-sm text-gray-400">Scripting for automation and analysis.</p>
+                                </div>
+                            </div>
+                            <div class="bg-gray-900 p-4 rounded-lg shadow-md flex items-center">
+                                <i class="fab fa-linux text-pink-500 text-2xl mr-4"></i>
+                                <div>
+                                    <p class="font-semibold text-lg">Linux Administration</p>
+                                    <p class="text-sm text-gray-400">Command line, system management.</p>
+                                </div>
+                            </div>
+                            <div class="bg-gray-900 p-4 rounded-lg shadow-md flex items-center">
+                                <i class="fas fa-flag-checkered text-pink-500 text-2xl mr-4"></i>
+                                <div>
+                                    <p class="font-semibold text-lg">CTF Participation</p>
+                                    <p class="text-sm text-gray-400">Problem-solving in cybersecurity challenges.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Activities Section -->
+        <section id="activities-section" class="py-16 md:py-24 bg-black">
+            <div class="container mx-auto px-4">
+                <div class="bg-black p-6 rounded-lg shadow-xl text-gray-200">
+                    <h3 class="text-3xl font-bold text-white-500 mb-6 text-center">My Activities</h3>
+                    <!-- Activity 1 -->
+                    <div class="mb-10 p-6 bg-gray-900 rounded-lg shadow-md flex flex-col md:flex-row items-center md:items-start">
+                        <img src="1731813205096.jpg" alt="" class="w-full md:w-1/3 max-w-xs md:max-w-none rounded-lg shadow-lg object-cover mb-4 md:mb-0 md:mr-6">
+                        <div class="md:w-2/3">
+                            <h4 class="text-xl font-semibold text-pink-400 mb-2">Top Gun Rally 2024</h4>
+                            <p class="text-sm text-gray-400 mb-2">date. November 10-16, 2024</p>
+                            <p class="text-gray-300">Participated in Top Gun Rally 2024, a team-based rally event designed to enhance problem-solving, creativity, and collaboration skills. The activity featured a series of mission-based checkpoints that challenged participants to think quickly, act under pressure, and apply knowledge from various fields including technology and communication.</p>
+                        </div>
+                    </div>
+                    <!-- Activity 2 -->
+                    <div class="mb-10 p-6 bg-gray-900 rounded-lg shadow-md flex flex-col md:flex-row items-center md:items-start">
+                        <img src="1746981373030.jpg" alt="" class="w-full md:w-1/3 max-w-xs md:max-w-none rounded-lg shadow-lg object-cover mb-4 md:mb-0 md:mr-6">
+                        <div class="md:w-2/3">
+                            <h4 class="text-xl font-semibold text-pink-400 mb-2">Cybersecurity Competition: BU CTF (Capture The Flag)2025</h4>
+                            <p class="text-sm text-gray-400 mb-2">date. May 9, 2025</p>
+                            <p class="text-gray-300">Participated in BU CTF (Bangkok University Capture The Flag), an internal cybersecurity competition designed to challenge students with real-world scenarios in Web Exploitation, Forensics, and Cryptography. The event enhanced my problem-solving, critical thinking, and teamwork skills, while deepening my practical knowledge in cybersecurity under time-constrained environments.</p>
+                        </div>
+                    </div>
+                    <!-- Activity 3 -->
+                    <div class="mb-10 p-6 bg-gray-900 rounded-lg shadow-md flex flex-col md:flex-row items-center md:items-start">
+                        <img src="LINE_ALBUM_Cyber warrior 2025_250710_1.jpg" alt="" class="w-full md:w-1/3 max-w-xs md:max-w-none rounded-lg shadow-lg object-cover mb-4 md:mb-0 md:mr-6">
+                        <div class="md:w-2/3">
+                            <h4 class="text-xl font-semibold text-pink-400 mb-2">Cyber Warrior Hackathon 2025</h4>
+                            <p class="text-sm text-gray-400 mb-2">date. June 11, 2025</p>
+                            <p class="text-gray-300">The development and creation of innovative products—whether in the fields of technology, processes, or business models—play a critical role in advancing the cybersecurity industry to encompass all dimensions of human life.
+The focus lies in user-centric design, protection of personal data, and building secure yet adaptable systems that meet the evolving challenges of the digital era.
+
+</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+         <!-- Certifications Section -->
+        <section id="certifications-section" class="py-16 md:py-24 bg-black">
+            <div class="container mx-auto px-4">
+                <div class="bg-black p-6 rounded-lg shadow-xl text-gray-200">
+                    <h3 class="text-3xl font-bold text-white-500 mb-6 text-center">My Certifications</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Certification 1 -->
+                        <div class="bg-gray-900 p-4 rounded-lg shadow-md flex flex-col items-center text-center">
+                            <img src="1726299501263.jpg" alt="" class="w-96 h-64 rounded-lg object-cover mb-4">
+                            <h4 class="text-xl font-semibold text-pink-400 mb-2">Basic Cybersecurity</h4>
+                        </div>
+                        <!-- Certification 2 -->
+                        <div class="bg-gray-900 p-4 rounded-lg shadow-md flex flex-col items-center text-center">
+                            <img src="1731048216085.jpg" alt="" class="w-96 h-64 rounded-lg object-cover mb-4">
+                            <h4 class="text-xl font-semibold text-pink-400 mb-2">Cybersecurity Foundation Course</h4>
+                        </div>
+                        <!-- Certification 3 -->
+                        <div class="bg-gray-900 p-4 rounded-lg shadow-md flex flex-col items-center text-center">
+                            <img src="1733215696523.jpg" alt="" class="w-96 h-64 rounded-lg object-cover mb-4">
+                            <h4 class="text-xl font-semibold text-pink-400 mb-2">Cybersecurity Professional Course</h4>
+                        </div>
+                        <!-- Certification 4 -->
+                        <div class="bg-gray-900 p-4 rounded-lg shadow-md flex flex-col items-center text-center">
+                            <img src="1738745987883.jpg" alt="" class="w-96 h-64 rounded-lg object-cover mb-4">
+                            <h4 class="text-xl font-semibold text-pink-400 mb-2">Women Thailand Cyber Top Talent 2024</h4>
+                        </div>
+                        <!-- Certification 5 -->
+                        <div class="bg-gray-900 p-4 rounded-lg shadow-md flex flex-col items-center text-center">
+                            <img src="1746981374641.jpg" alt="" class="w-96 h-64 rounded-lg object-cover mb-4">
+                            <h4 class="text-xl font-semibold text-pink-400 mb-2">BU-ITI CTF Competition 2025 </h4>
+                        </div>
+                        <!-- Certification 6 -->
+                        <div class="bg-gray-900 p-4 rounded-lg shadow-md flex flex-col items-center text-center">
+                            <img src="1739335415505.jpg" alt="" class="w-96 h-64 rounded-lg object-cover mb-4">
+                            <h4 class="text-xl font-semibold text-pink-400 mb-2">Build a chatbot </h4>
+                        </div>
+                        <!-- Certification 7 -->
+                        <div class="bg-gray-900 p-4 rounded-lg shadow-md flex flex-col items-center text-center">
+                            <img src="1731813204726.jpg" alt="" class="w-96 h-64 rounded-lg object-cover mb-4">
+                            <h4 class="text-xl font-semibold text-pink-400 mb-2">Top Gun Rally 2024 </h4>
+                        </div>
+                        <!-- Certification 7 -->
+                        <div class="bg-gray-900 p-4 rounded-lg shadow-md flex flex-col items-center text-center">
+                            <img src="CTF Boot Camp.png" alt="" class="w-96 h-64 rounded-lg object-cover mb-4">
+                            <h4 class="text-xl font-semibold text-pink-400 mb-2">CTF Boot Camp </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact Section -->
+        <section id="contact-section" class="py-16 md:py-24 bg-black">
+            <div class="container mx-auto px-4">
+                <div class="bg-black p-6 rounded-lg shadow-xl text-gray-200 flex flex-col lg:flex-row gap-8">
+                    <!-- Get in touch column -->
+                    <div class="lg:w-1/2">
+                        <h3 class="text-3xl font-bold text-pink-500 mb-6">Get in touch</h3>
+                        <p class="text-lg mb-6 opacity-90">Feel free to get in touch with me. I am always open to discussing new projects, creative ideas or get ideas opportunities to be part of your open visions.</p>
+                        <div class="space-y-4">
+                            
+                            <div class="flex items-start">
+                                <i class="fas fa-envelope text-pink-500 text-2xl mr-4 mt-1"></i>
+                                <div>
+                                    <p class="font-semibold text-lg text-pink-400">Email Address</p>
+                                    <p class="text-gray-300">kanokwanklan.contact@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-phone text-pink-500 text-2xl mr-4 mt-1"></i>
+                                <div>
+                                    <p class="font-semibold text-lg text-pink-400">Phone Number</p>
+                                    <p class="text-gray-300">095-858-7918</p>
+                                </div>
+                            </div>
+                            <!-- Social Media Icons -->
+                             <div ><p></p></div>
+                            <div class="flex items-center space-x-4 mt-6">
+                                <a href="https://www.facebook.com/fram.kanokwan.77" target="_blank" class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300">
+                                    <i class="fab fa-facebook-f text-pink-500 text-2xl"></i>
+                                </a>
+                                
+                                <a href="https://www.instagram.com/_knwframe_/" target="_blank" class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300">
+                                    <i class="fab fa-instagram text-pink-500 text-2xl"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/in/kanokwan-klankaew-477b35324/" target="_blank" class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300">
+                                    <i class="fab fa-linkedin-in text-pink-500 text-2xl"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form column -->
+                    <div class="lg:w-1/2 bg-gray-800 p-8 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-bold text-pink-500 mb-6">Contact With Me</h3>
+                        <!-- Form action changed to mailto: -->
+                        <form id="contactForm" action="mailto:kanokwanklan.contact@gmail.com" method="post" enctype="text/plain" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="contact-name" class="sr-only">Name</label>
+                                    <input type="text" id="contact-name" name="name" placeholder="Name" required
+                                        class="shadow appearance-none border border-gray-700 rounded-lg w-full py-3 px-4 bg-gray-900 text-gray-200 leading-tight focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition duration-200">
+                                </div>
+                                <div>
+                                    <label for="contact-email" class="sr-only">Email</label>
+                                    <input type="email" id="contact-email" name="email" placeholder="Email" required
+                                        class="shadow appearance-none border border-gray-700 rounded-lg w-full py-3 px-4 bg-gray-900 text-gray-200 leading-tight focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition duration-200">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="contact-subject" class="sr-only">Subject</label>
+                                <input type="text" id="contact-subject" name="subject" placeholder="Subject" required
+                                    class="shadow appearance-none border border-gray-700 rounded-lg w-full py-3 px-4 bg-gray-900 text-gray-200 leading-tight focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition duration-200">
+                            </div>
+                            <div>
+                                <label for="contact-comment" class="sr-only">Comment</label>
+                                <textarea id="contact-comment" name="comment" rows="5" placeholder="Comment" required
+                                    class="shadow appearance-none border border-gray-700 rounded-lg w-full py-3 px-4 bg-gray-900 text-gray-200 leading-tight focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent transition duration-200"></textarea>
+                            </div>
+                            <div class="flex justify-center">
+                                <button type="submit"
+                                    class="bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transform transition duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2">
+                                    Send Message <i class="fas fa-paper-plane ml-2"></i>
+                                </button>
+                            </div>
+                            <div id="formMessage" class="mt-4 text-center text-green-400 font-semibold hidden">
+                                <!-- Message will be displayed here -->
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+
+    </main>
+
+    <footer class="bg-black text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 Kanokwan Klankaew. สงวนลิขสิทธิ์.</p>
+            <p class="mt-2 text-sm opacity-80">ออกแบบด้วยความรักและ Tailwind CSS</p>
+        </div>
+    </footer>
+
+    <script>
+        // Particle animation for Hero Section
+        const canvas = document.getElementById('hero-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        const numParticles = 100;
+        const particleColor = 'rgba(255, 255, 255, 0.3)'; // Semi-transparent white
+        const lineColor = 'rgba(219, 39, 119, 0.2)'; // Semi-transparent pink
+
+        // Function to set canvas dimensions
+        function setCanvasDimensions() {
+            // ทำให้ canvas มีขนาดเท่ากับ div ที่ครอบมัน
+            const wrapper = document.getElementById('hero-section-wrapper');
+            if (wrapper) {
+                canvas.width = wrapper.offsetWidth;
+                canvas.height = wrapper.offsetHeight;
+            } else { // Fallback if wrapper isn't found (shouldn't happen)
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+        }
+
+        // Particle constructor
+        function Particle(x, y, radius, dx, dy) {
+            this.x = x;
+            this.y = y;
+            this.radius = radius;
+            this.dx = dx;
+            this.dy = dy;
+
+            this.draw = function() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+                ctx.fillStyle = particleColor;
+                ctx.fill();
+            };
+
+            this.update = function() {
+                // Bounce off walls
+                if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
+                    this.dx = -this.dx;
+                }
+                if (this.y + this.radius > canvas.height || this.y - this.radius < 0) {
+                    this.dy = -this.dy;
+                }
+
+                this.x += this.dx;
+                this.y += this.dy;
+
+                this.draw();
+            };
+        }
+
+        // Initialize particles
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < numParticles; i++) {
+                const radius = Math.random() * 2 + 1; // Particle size
+                const x = Math.random() * (canvas.width - radius * 2) + radius;
+                const y = Math.random() * (canvas.height - radius * 2) + radius;
+                const dx = (Math.random() - 0.5) * 0.5; // Slower movement
+                const dy = (Math.random() - 0.5) * 0.5; // Slower movement
+                particles.push(new Particle(x, y, radius, dx, dy));
+            }
+        }
+
+        // Connect particles with lines
+        function connectParticles() {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i; j < particles.length; j++) {
+                    const p1 = particles[i];
+                    const p2 = particles[j];
+                    const distance = Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
+
+                    if (distance < 100) { // Connect particles within 100px
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.strokeStyle = lineColor;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        // Animation loop
+        function animateParticles() {
+            requestAnimationFrame(animateParticles);
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
+
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+            }
+            connectParticles();
+        }
+
+        // Typing effect for "Cybersecurity"
+        const textElement = document.getElementById('cybersecurity-text');
+        const textToType = "Cybersecurity";
+        let charIndex = 0;
+        let isDeleting = false; // Flag to check if we are deleting or typing
+
+        function typeTextLoop() {
+            const currentText = textToType.substring(0, charIndex);
+            textElement.textContent = currentText;
+
+            if (!isDeleting) {
+                // Typing forward
+                charIndex++;
+                if (charIndex > textToType.length) {
+                    isDeleting = true; // Start deleting after a pause
+                    setTimeout(typeTextLoop, 1500); // Pause before deleting (1.5 seconds)
+                    return;
+                }
+            } else {
+                // Deleting backward
+                charIndex--;
+                if (charIndex < 0) {
+                    isDeleting = false; // Start typing again after a pause
+                    charIndex = 0; // Reset index to start typing from scratch
+                    setTimeout(typeTextLoop, 500); // Pause before re-typing (0.5 seconds)
+                    return;
+                }
+            }
+
+            const typingSpeed = isDeleting ? 50 : 100; // Faster deletion, slower typing
+            setTimeout(typeTextLoop, typingSpeed);
+        }
+
+        // Initialize on window load and handle resize
+        window.onload = function() {
+            setCanvasDimensions();
+            initParticles();
+            animateParticles();
+            typeTextLoop(); // Start the looping typing effect
+        };
+
+        window.addEventListener('resize', function() {
+            setCanvasDimensions();
+            initParticles(); // Re-initialize particles on resize for better distribution
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
